@@ -1,4 +1,4 @@
-add_executable(BluetoothCtrlTest bluetooth_control.cpp)
-add_executable(BluetoothdTest bluetoothd_test.cpp)
-add_executable(USBTest usb_test.cpp)
-add_executable(BlueZTest bluez_test.cpp)
+add_executable(bluetooth_ctrl_test bluetooth_control.cpp)
+add_executable(bluetoothd_test bluetoothd_test.cpp)
+add_executable(usb_test usb_test.cpp)
+add_executable(bluez_test bluez_test.cpp)

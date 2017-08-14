@@ -3,12 +3,12 @@ cmake_minimum_required(VERSION 3.3)
 
 list(
         APPEND HEADER_FILES
-        Bluetooth.hpp
+        lib_bluez.hpp
 )
 
 list(
         APPEND SOURCE_FILES
-        Bluetooth.cpp
+        lib_bluez.cpp
 )
 set(ALL_SOURCE_FILES ${HEADER_FILES} ${SOURCE_FILES})
 source_group(${PROJECT_NAME} FILES ${ALL_SOURCE_FILES})

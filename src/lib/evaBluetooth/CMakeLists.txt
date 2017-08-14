@@ -3,12 +3,12 @@ cmake_minimum_required(VERSION 3.3)
 
 list(
         APPEND HEADER_FILES
-        Bluetooth.hpp
+        eva_bluetooth.hpp
 )
 
 list(
         APPEND SOURCE_FILES
-        Bluetooth.cpp
+        eva_bluetooth.cpp
 )
 set(ALL_SOURCE_FILES ${HEADER_FILES} ${SOURCE_FILES})
 source_group(${PROJECT_NAME} FILES ${ALL_SOURCE_FILES})
