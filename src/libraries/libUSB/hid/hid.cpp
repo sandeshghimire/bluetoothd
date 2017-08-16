@@ -17,7 +17,7 @@ void HostInterfaceDevice::init() {
   }
 }
 void HostInterfaceDevice::exit() {
-
+  hid_exit();
 }
 int HostInterfaceDevice::enumerate() {
   _devices = hid_enumerate(kEnumerationValue, kEnumerationValue);
@@ -25,14 +25,21 @@ int HostInterfaceDevice::enumerate() {
     std::cout << "Failed to enumerate" << std::endl;
   }
 }
-int HostInterfaceDevice::freeEnumerate() {
-  return 0;
+void HostInterfaceDevice::freeEnumerate() {
+  hid_free_enumeration(_devices);
 }
 int HostInterfaceDevice::open() {
-  return 0;
+  _handle = hid_open(kDeviceId, kVenderId, NULL);
+  if(!_handle)
+  {
+    //TODO :: log here
+  }
+
+
 }
-int HostInterfaceDevice::close() {
-  return 0;
+void HostInterfaceDevice::close() {
+  hid_close(_handle);
+
 }
 int HostInterfaceDevice::getManufacturerString() {
   return 0;

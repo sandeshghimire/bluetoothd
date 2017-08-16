@@ -20,9 +20,9 @@ class HostInterfaceDevice {
   void init();
   void exit();
   int enumerate();
-  int freeEnumerate();
+  void freeEnumerate();
   int open();
-  int close();
+  void close();
   int getManufacturerString();
   int getProductString();
   int getSerialNumberString();
@@ -35,10 +35,13 @@ class HostInterfaceDevice {
   int getFeatureReport();
 
  private:
+  hid_device *_handle;
   hid_device_info *_devices;
   hid_device_info *_currentDevice;
   int _hidInitFlag;
   static const int kEnumerationValue {0x0};
+  static const int kDeviceId {0xFF};
+  static const int kVenderId {0xFF};
 };
 
 #endif //HARDWAREVERIFICATION_HID_HPP
