@@ -1,17 +1,25 @@
-//
-// Created by Sandesh Ghimire on 8/14/17.
-//
 
 #ifndef _BLUETOOTH_MAIN_HPP_
 #define _BLUETOOTH_MAIN_HPP_
 
-#include <vector>
-#include <memory>
+#include "eva_bluetooth.hpp"
+#include "bluetooth_controller_service_delegate.hpp"
 
 class BluetoothMain;
 
-class BluetoothMain : public std::enable_shared_from_this<BluetoothMain>
+class BluetoothMain : public EvaBluetooth, public BluetoothControllerServiceDelegate
 {
+ public:
+    BluetoothMain();
+    virtual ~BluetoothMain();
+    unsigned char get_state() const;
+    void set_state(unsigned char _state);
+    int run();
+    int stop();
+
+ private:
+    unsigned char _state;
+
 
 };
 

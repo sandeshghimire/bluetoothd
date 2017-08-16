@@ -7,7 +7,9 @@
 
 class BluetoothControllerServiceDelegate
 {
-
+ public:
+    BluetoothControllerServiceDelegate();
+    virtual ~BluetoothControllerServiceDelegate();
 };
 
 #endif //_BLUETOOTH_CONTROLLER_SERVICE_DELEGATE_HPP_

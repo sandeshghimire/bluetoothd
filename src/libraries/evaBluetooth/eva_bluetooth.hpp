@@ -10,4 +10,36 @@ class EvaBluetooth
 
 };
 
+class CBATTRequest
+{
+
+};
+
+class CBAttribute
+{
+
+};
+
+
+class CBCentral
+{
+
+};
+
+class CBCentralManager
+{
+
+};
+
+class CBCharacteristic
+{
+
+};
+
+
+class CBDescriptor
+{
+
+};
+
 #endif //_EVABLUETOOTH_HPP_

@@ -3,3 +3,11 @@
 //
 
 #include "bluetooth_controller_service_delegate.hpp"
+BluetoothControllerServiceDelegate::BluetoothControllerServiceDelegate()
+{
+
+}
+BluetoothControllerServiceDelegate::~BluetoothControllerServiceDelegate()
+{
+
+}
