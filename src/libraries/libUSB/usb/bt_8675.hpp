@@ -5,14 +5,14 @@
 #include <wchar.h>
 #include <string.h>
 #include <stdlib.h>
-#include <hidapi/hidapi.h>
+
 #include "../hid/hid.hpp"
 
-class USB : public HostInterfaceDevice
+class BT8675 : public HostInterfaceDevice
 {
  public:
-    USB();
-    virtual ~USB();
+    BT8675();
+    virtual ~BT8675();
  private:
 
 };

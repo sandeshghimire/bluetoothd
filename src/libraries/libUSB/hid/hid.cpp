@@ -1,71 +1,128 @@
-//
-// Created by Sandesh Ghimire on 8/16/17.
-//
-
 #include "hid.hpp"
 
 HostInterfaceDevice::HostInterfaceDevice()
-    : _devices(nullptr), _currentDevice(nullptr), _hidInitFlag(-1) {}
-HostInterfaceDevice::~HostInterfaceDevice() {
+{
+
+}
+HostInterfaceDevice::~HostInterfaceDevice()
+{
 }
 
-void HostInterfaceDevice::init() {
-  if (!_hidInitFlag) {
-    _hidInitFlag = hid_init();
-  } else {
-    std::cout << "HID already initilized" << std::endl;
-  }
+void HostInterfaceDevice::_init()
+{
+  _initialized = hid_init();
 }
-void HostInterfaceDevice::exit() {
+
+void HostInterfaceDevice::_exit()
+{
   hid_exit();
 }
-int HostInterfaceDevice::enumerate() {
-  _devices = hid_enumerate(kEnumerationValue, kEnumerationValue);
-  if (!_devices) {
-    std::cout << "Failed to enumerate" << std::endl;
-  }
+
+int HostInterfaceDevice::_enumerate(unsigned int vendorId, unsigned int productId)
+{
+  _devices = hid_enumerate(vendorId, productId);
 }
-void HostInterfaceDevice::freeEnumerate() {
+
+void HostInterfaceDevice::_freeEnumerate()
+{
   hid_free_enumeration(_devices);
 }
-int HostInterfaceDevice::open() {
-  _handle = hid_open(kDeviceId, kVenderId, NULL);
-  if(!_handle)
-  {
-  }
+
+int HostInterfaceDevice::_open()
+{
+  _handle = hid_open(_vendorID, _productID, NULL);
+  return 0;
+
 }
-void HostInterfaceDevice::close()
+
+void HostInterfaceDevice::_close()
 {
   hid_close(_handle);
 }
-int HostInterfaceDevice::getManufacturerString() {
-  return 0;
+
+int HostInterfaceDevice::_getManufacturerString()
+{
+  return (hid_get_manufacturer_string(_handle, (wchar_t *) _manufacturerString.c_str(), 255));
 }
-int HostInterfaceDevice::getProductString() {
-  return 0;
+
+int HostInterfaceDevice::_getProductString()
+{
+  return (hid_get_product_string(_handle, (wchar_t *) _productString.c_str(), 255));
 }
-std::string HostInterfaceDevice::getSerialNumberString() {
-  return 0;
+
+int HostInterfaceDevice::_getSerialNumberString()
+{
+  return (hid_get_serial_number_string(_handle, (wchar_t *) _serialNumberString.c_str(), 255));
 }
-int HostInterfaceDevice::getIndexedString() {
-  return 0;
+
+int HostInterfaceDevice::_getIndexedString()
+{
+  return (hid_get_indexed_string(_handle, 1, (wchar_t *) _indexedString.c_str(), 255));
 }
-int HostInterfaceDevice::setNonBlocking() {
-  return 0;
+
+void HostInterfaceDevice::_setNonBlocking()
+{
+  hid_set_nonblocking(_handle, 1);
 }
-int HostInterfaceDevice::setBlocking() {
-  return 0;
+
+int HostInterfaceDevice::_setBlocking()
+{
+  hid_set_nonblocking(_handle, 0);
 }
-int HostInterfaceDevice::read() {
-  return 0;
+
+int HostInterfaceDevice::read(std::string data, unsigned int length)
+{
+  data.clear();
+  return (hid_read(_handle, (unsigned char *) data.c_str(), length));
 }
-int HostInterfaceDevice::write() {
-  return 0;
+
+int HostInterfaceDevice::write(unsigned int length)
+{
+  _writeBuffer.clear();
+  return (hid_read(_handle, (unsigned char *) _readBuffer.c_str(), length));
 }
-int HostInterfaceDevice::sendFeatureReport() {
-  return 0;
+
+int HostInterfaceDevice::_sendFeatureReport(std::string data)
+{
+  return (hid_get_feature_report(_handle, (unsigned char *) data.c_str(), data.length()));
 }
-int HostInterfaceDevice::getFeatureReport() {
-  return 0;
+
+int HostInterfaceDevice::read(std::string data)
+{
+  data.clear();
+  return (hid_read(_handle, (unsigned char *) data.c_str(), data.length()));
+}
+
+int HostInterfaceDevice::write(std::string data)
+{
+  return (hid_write(_handle, (unsigned char *) data.c_str(), data.length()));
+}
+unsigned int HostInterfaceDevice::_get_vendorID() const
+{
+  return _vendorID;
+}
+void HostInterfaceDevice::setVendorID(unsigned int _vendorID)
+{
+  HostInterfaceDevice::_vendorID = _vendorID;
+}
+unsigned int HostInterfaceDevice::_get_productID() const
+{
+  return _productID;
+}
+void HostInterfaceDevice::setProductID(unsigned int _productID)
+{
+  HostInterfaceDevice::_productID = _productID;
+}
+int HostInterfaceDevice::_openPath(std::string path)
+{
+  _handle = hid_open_path((const char *) path.c_str());
+}
+int HostInterfaceDevice::readTimeout(std::string data, unsigned int timeout)
+{
+  hid_read_timeout(_handle, (unsigned char *) data.c_str(), data.length(), timeout);
+}
+int HostInterfaceDevice::_getFeatureReport(std::string data)
+{
+  return (hid_get_feature_report(_handle, (unsigned char *) data.c_str(), data.length()));
 }
 
