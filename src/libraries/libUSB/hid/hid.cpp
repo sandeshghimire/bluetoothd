@@ -42,22 +42,22 @@ void HostInterfaceDevice::_close()
 
 int HostInterfaceDevice::_getManufacturerString()
 {
-  return (hid_get_manufacturer_string(_handle, (wchar_t *) _manufacturerString.c_str(), 255));
+  return (hid_get_manufacturer_string(_handle, (wchar_t *) _manufacturerName.c_str(), 255));
 }
 
 int HostInterfaceDevice::_getProductString()
 {
-  return (hid_get_product_string(_handle, (wchar_t *) _productString.c_str(), 255));
+  return (hid_get_product_string(_handle, (wchar_t *) _productName.c_str(), 255));
 }
 
 int HostInterfaceDevice::_getSerialNumberString()
 {
-  return (hid_get_serial_number_string(_handle, (wchar_t *) _serialNumberString.c_str(), 255));
+  return (hid_get_serial_number_string(_handle, (wchar_t *) _serialNumber.c_str(), 255));
 }
 
 int HostInterfaceDevice::_getIndexedString()
 {
-  return (hid_get_indexed_string(_handle, 1, (wchar_t *) _indexedString.c_str(), 255));
+  return (hid_get_indexed_string(_handle, 1, (wchar_t *) _indexed.c_str(), 255));
 }
 
 void HostInterfaceDevice::_setNonBlocking()
@@ -76,10 +76,11 @@ int HostInterfaceDevice::read(std::string data, unsigned int length)
   return (hid_read(_handle, (unsigned char *) data.c_str(), length));
 }
 
-int HostInterfaceDevice::write(unsigned int length)
+int HostInterfaceDevice::write(std::string data, unsigned int length)
 {
-  _writeBuffer.clear();
-  return (hid_read(_handle, (unsigned char *) _readBuffer.c_str(), length));
+
+  data.clear();
+  return (hid_read(_handle, (unsigned char *) data.c_str(), length));
 }
 
 int HostInterfaceDevice::_sendFeatureReport(std::string data)
@@ -101,7 +102,7 @@ unsigned int HostInterfaceDevice::_get_vendorID() const
 {
   return _vendorID;
 }
-void HostInterfaceDevice::setVendorID(unsigned int _vendorID)
+void HostInterfaceDevice::_setVendorID(unsigned int _vendorID)
 {
   HostInterfaceDevice::_vendorID = _vendorID;
 }
@@ -109,7 +110,7 @@ unsigned int HostInterfaceDevice::_get_productID() const
 {
   return _productID;
 }
-void HostInterfaceDevice::setProductID(unsigned int _productID)
+void HostInterfaceDevice::_setProductID(unsigned int _productID)
 {
   HostInterfaceDevice::_productID = _productID;
 }

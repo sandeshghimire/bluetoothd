@@ -13,7 +13,7 @@ class BluetoothManager
     BluetoothManager();
     virtual ~BluetoothManager();
  private:
-    unsigned char _state;
+
 
 
 };

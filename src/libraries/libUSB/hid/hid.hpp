@@ -20,10 +20,9 @@ class HostInterfaceDevice
   int read(std::string data);
   int write(std::string data);
   int read(std::string data, unsigned int length);
-  int write(unsigned int length);
+  int write(std::string data, unsigned int length);
   int readTimeout(std::string data, unsigned int timeout);
-  void setVendorID(unsigned int _vendorID);
-  void setProductID(unsigned int _productID);
+
 
  protected:
   int _open();
@@ -44,18 +43,19 @@ class HostInterfaceDevice
   int _sendFeatureReport(std::string data);
   int _enumerate(unsigned int vendorId, unsigned int productId);
 
+  void _setVendorID(unsigned int _vendorID);
+  void _setProductID(unsigned int _productID);
+
  protected:
   unsigned int _initialized = 0;
 
  private:
   hid_device *_handle;
   hid_device_info *_devices;
-  std::string _manufacturerString;
-  std::string _productString;
-  std::string _serialNumberString;
-  std::string _indexedString;
-  std::string _readBuffer;
-  std::string _writeBuffer;
+  std::string _manufacturerName;
+  std::string _productName;
+  std::string _serialNumber;
+  std::string _indexed;
   unsigned int _vendorID;
   unsigned int _productID;
 
