@@ -25,7 +25,7 @@ class HostInterfaceDevice {
   void close();
   int getManufacturerString();
   int getProductString();
-  int getSerialNumberString();
+  std::string getSerialNumberString();
   int getIndexedString();
   int setNonBlocking();
   int setBlocking();

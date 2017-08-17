@@ -32,14 +32,11 @@ int HostInterfaceDevice::open() {
   _handle = hid_open(kDeviceId, kVenderId, NULL);
   if(!_handle)
   {
-    //TODO :: log here
   }
-
-
 }
-void HostInterfaceDevice::close() {
+void HostInterfaceDevice::close()
+{
   hid_close(_handle);
-
 }
 int HostInterfaceDevice::getManufacturerString() {
   return 0;
@@ -47,7 +44,7 @@ int HostInterfaceDevice::getManufacturerString() {
 int HostInterfaceDevice::getProductString() {
   return 0;
 }
-int HostInterfaceDevice::getSerialNumberString() {
+std::string HostInterfaceDevice::getSerialNumberString() {
   return 0;
 }
 int HostInterfaceDevice::getIndexedString() {
