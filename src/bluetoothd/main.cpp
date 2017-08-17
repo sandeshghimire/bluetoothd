@@ -1,9 +1,9 @@
 #include <iostream>
-#include "../libraries/evaBluetooth/bluetooth_main.hpp"
+#include "../libraries/evaBluetooth/bluetooth_manager.hpp"
 
 int main(int argc, char **argv)
 {
-    BluetoothMain bluetoothMain;
+    BluetoothManager bluetoothMain;
 
     return 0;
 }

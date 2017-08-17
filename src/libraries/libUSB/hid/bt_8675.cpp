@@ -6,18 +6,9 @@
 
 BT8675::BT8675()
 {
-  if(!_initialized)
-  {
-    _initialized = 1;
-  }
-  else
-  {
-
-  }
 
 }
 BT8675::~BT8675()
 {
-  _initialized = 0;
-}
 
+}

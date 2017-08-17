@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../libraries/evaBluetooth/eva_bluetooth.hpp"
+#include "../libraries/evaBluetooth/bluetooth.hpp"
 
 int main(int argc, char **argv)
 {
