@@ -16,9 +16,13 @@ int main(int argc, char **argv)
   {
     std::cin >> input;
     crs8675->Write(input);
-    std::cout << "Input value is " << input << std::endl;
     crs8675->Read(output);
-    std::cout << "Return value is " << output << std::endl;
+
+    for(int i = 0; i < output.length(); i++)
+    {
+      printf("%X ", output.c_str()[i]);
+    }
+
   }
 
   delete(crs8675);

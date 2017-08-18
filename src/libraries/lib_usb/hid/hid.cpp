@@ -83,14 +83,12 @@ int HostInterfaceDevice::Read(std::string data)
   rc = (hid_read(_handle, _readBuffer, sizeof(_readBuffer)));
   pthread_mutex_unlock(&_hidMutex);
   return rc;
-
 }
 
 int HostInterfaceDevice::Write(std::string data)
 {
   unsigned int writeBufferCounter = 0;
-  for (int i = 0; i < data.length(); i += 2)
-  {
+  for (int i = 0; i < data.length(); i += 2) {
     _writeBuffer[writeBufferCounter++] = (((_HexChar(data.c_str()[i])) & 0x0F) << 4) | (_HexChar(data.c_str()[i + 1]));
   }
   std::cout << "input string  " << data << std::endl;
