@@ -11,9 +11,11 @@
 class BT8675 : public HostInterfaceDevice
 {
  public:
-    BT8675();
-    virtual ~BT8675();
+  BT8675();
+  virtual ~BT8675();
  private:
+  unsigned int kVendorId{0x05};
+  unsigned int kProductId{0x03};
 
 };
 

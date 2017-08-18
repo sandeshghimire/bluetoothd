@@ -26,7 +26,7 @@ class HostInterfaceDevice
 
  protected:
   int _open();
-  void _init();
+  int _init();
   void _exit();
   void _close();
   int _setBlocking();

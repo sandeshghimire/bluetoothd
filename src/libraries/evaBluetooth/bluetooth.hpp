@@ -5,39 +5,7 @@
 #ifndef _EVABLUETOOTH_HPP_
 #define _EVABLUETOOTH_HPP_
 
-class EvaBluetooth
-{
-
-};
-
-class CBATTRequest
-{
-
-};
-
-class CBAttribute
-{
-
-};
-
-
-class CBCentral
-{
-
-};
-
-class CBCentralManager
-{
-
-};
-
-class CBCharacteristic
-{
-
-};
-
-
-class CBDescriptor
+class Bluetooth 
 {
 
 };

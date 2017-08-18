@@ -8,9 +8,9 @@ HostInterfaceDevice::~HostInterfaceDevice()
 {
 }
 
-void HostInterfaceDevice::_init()
+int HostInterfaceDevice::_init()
 {
-  _initialized = hid_init();
+  return( hid_init());
 }
 
 void HostInterfaceDevice::_exit()
