@@ -1,6 +1,6 @@
 #include <iostream>
 #include <zconf.h>
-#include "../../libraries/libUSB/hid/crs_8675.hpp"
+#include "../../libraries/lib_usb/hid/crs_8675.hpp"
 
 int main(int argc, char **argv)
 {
@@ -8,6 +8,9 @@ int main(int argc, char **argv)
   std::string output;
 
   CRS8675 *crs8675 = new CRS8675();
+
+  std::cout << "Vendor ID  " << crs8675->_GetVendorID() << std::endl;
+  std::cout << "Product ID  " << crs8675->_GetProductID() << std::endl;
 
   while(1)
   {

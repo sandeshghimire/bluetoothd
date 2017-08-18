@@ -20,6 +20,8 @@ class HostInterfaceDevice
   virtual ~HostInterfaceDevice();
   int Read(std::string data);
   int Write(std::string data);
+  unsigned int _GetVendorID() const;
+  unsigned int _GetProductID() const;
   int ReadTimeout(std::string data, unsigned int timeout);
 
  protected:
@@ -35,8 +37,6 @@ class HostInterfaceDevice
   int _GetManufacturerString();
   int _GetSerialNumberString();
   int _OpenPath(std::string path);
-  unsigned int _GetVendorID() const;
-  unsigned int _GetProductID() const;
   int _GetFeatureReport(std::string data);
   int _SendFeatureReport(std::string data);
   int _Enumerate(unsigned int vendorId, unsigned int productId);
@@ -54,8 +54,8 @@ class HostInterfaceDevice
   std::string _productName;
   std::string _serialNumber;
   std::string _indexed;
-  unsigned int _vendorID {0x0A12};
-  unsigned int _productID {0x1004};
+  unsigned int _vendorID{0x0A12};
+  unsigned int _productID{0x1004};
   unsigned char _readBuffer[255];
   unsigned char _writeBuffer[255];
 

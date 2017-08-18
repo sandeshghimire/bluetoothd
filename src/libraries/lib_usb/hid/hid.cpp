@@ -76,11 +76,14 @@ int HostInterfaceDevice::_SendFeatureReport(std::string data)
 
 int HostInterfaceDevice::Read(std::string data)
 {
+  int rc = 0;
   data.clear();
+  memset(_readBuffer, 0, sizeof(_readBuffer));
   pthread_mutex_lock(&_hidMutex);
-  int rc =  (hid_read(_handle, (unsigned char *) data.c_str(), 17));
+  rc = (hid_read(_handle, _readBuffer, sizeof(_readBuffer)));
   pthread_mutex_unlock(&_hidMutex);
   return rc;
+
 }
 
 int HostInterfaceDevice::Write(std::string data)
@@ -90,6 +93,8 @@ int HostInterfaceDevice::Write(std::string data)
   {
     _writeBuffer[writeBufferCounter++] = (((_HexChar(data.c_str()[i])) & 0x0F) << 4) | (_HexChar(data.c_str()[i + 1]));
   }
+  std::cout << "input string  " << data << std::endl;
+
   pthread_mutex_lock(&_hidMutex);
   int rc = hid_write(_handle, _writeBuffer, writeBufferCounter);
   pthread_mutex_unlock(&_hidMutex);

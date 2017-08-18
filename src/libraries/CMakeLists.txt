@@ -1,3 +1,3 @@
 add_subdirectory(evaBluetooth)
 add_subdirectory(libBlueZ)
-add_subdirectory(libUSB)
+add_subdirectory(lib_usb)

@@ -13,6 +13,11 @@ class CRS8675 : public HostInterfaceDevice
  public:
   CRS8675();
   virtual ~CRS8675();
+
+ private:
+  int _CSR8675NormalModeInit();
+  int _CSR8675NormalModeCleanUp();
+
  private:
   unsigned int kVendorId{0x05};
   unsigned int kProductId{0x03};
