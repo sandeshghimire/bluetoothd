@@ -1,0 +1,6 @@
+add_executable(bluetooth_ctrl_test bluetooth_control.cpp)
+add_executable(bluetoothd_test bluetoothd_test.cpp)
+add_executable(usb_test usb_test.cpp)
+add_executable(bluez_test bluez_test.cpp)
+add_executable(hid_test hid_test.cpp)
+target_link_libraries(hid_test  libhid libhidapi-libusb.a libhid )

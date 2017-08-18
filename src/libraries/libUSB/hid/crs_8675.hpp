@@ -8,11 +8,11 @@
 
 #include "hid.hpp"
 
-class BT8675 : public HostInterfaceDevice
+class CRS8675 : public HostInterfaceDevice
 {
  public:
-  BT8675();
-  virtual ~BT8675();
+  CRS8675();
+  virtual ~CRS8675();
  private:
   unsigned int kVendorId{0x05};
   unsigned int kProductId{0x03};

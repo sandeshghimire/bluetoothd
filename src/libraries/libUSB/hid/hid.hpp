@@ -11,53 +11,53 @@
 #include <string.h>
 #include <stdlib.h>
 #include <hidapi/hidapi.h>
+#include <pthread.h>
 
 class HostInterfaceDevice
 {
  public:
   HostInterfaceDevice();
   virtual ~HostInterfaceDevice();
-  int read(std::string data);
-  int write(std::string data);
-  int read(std::string data, unsigned int length);
-  int write(std::string data, unsigned int length);
-  int readTimeout(std::string data, unsigned int timeout);
-
+  int Read(std::string data);
+  int Write(std::string data);
+  int ReadTimeout(std::string data, unsigned int timeout);
 
  protected:
-  int _open();
-  int _init();
-  void _exit();
-  void _close();
-  int _setBlocking();
-  void _freeEnumerate();
-  void _setNonBlocking();
-  int _getProductString();
-  int _getIndexedString();
-  int _getManufacturerString();
-  int _getSerialNumberString();
-  int _openPath(std::string path);
-  unsigned int _get_vendorID() const;
-  unsigned int _get_productID() const;
-  int _getFeatureReport(std::string data);
-  int _sendFeatureReport(std::string data);
-  int _enumerate(unsigned int vendorId, unsigned int productId);
-
-  void _setVendorID(unsigned int _vendorID);
-  void _setProductID(unsigned int _productID);
-
+  int _Open();
+  int _Init();
+  void _Exit();
+  void _Close();
+  int _SetBlocking();
+  void _FreeEnumerate();
+  void _SetNonBlocking();
+  int _GetProductString();
+  int _GetIndexedString();
+  int _GetManufacturerString();
+  int _GetSerialNumberString();
+  int _OpenPath(std::string path);
+  unsigned int _GetVendorID() const;
+  unsigned int _GetProductID() const;
+  int _GetFeatureReport(std::string data);
+  int _SendFeatureReport(std::string data);
+  int _Enumerate(unsigned int vendorId, unsigned int productId);
+  void _SetVendorID(unsigned int _vendorID);
+  void _SetProductID(unsigned int _productID);
+  unsigned char _HexChar(char input);
  protected:
-  unsigned int _initialized = 0;
+  unsigned int _initialized = {0};
 
  private:
+  pthread_mutex_t _hidMutex;
   hid_device *_handle;
   hid_device_info *_devices;
   std::string _manufacturerName;
   std::string _productName;
   std::string _serialNumber;
   std::string _indexed;
-  unsigned int _vendorID;
-  unsigned int _productID;
+  unsigned int _vendorID {0x0A12};
+  unsigned int _productID {0x1004};
+  unsigned char _readBuffer[255];
+  unsigned char _writeBuffer[255];
 
 };
 
